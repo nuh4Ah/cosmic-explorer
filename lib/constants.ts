@@ -144,3 +144,84 @@ export const topics: Topic[] = [
     color: 'from-nebula-purple to-cosmic-pink',
   },
 ]
+
+export interface StarType {
+  id: string
+  name: string
+  description: string
+  temperature: string
+  size: string
+  examples: string[]
+  color: string
+}
+
+export const starTypes: StarType[] = [
+  {
+    id: 'red-giant',
+    name: 'Red Giant',
+    description: 'Massive, cool stars in the late stages of stellar evolution. They glow red because of their lower surface temperature.',
+    temperature: '3,000-4,000K',
+    size: '100-1000x Sun\'s radius',
+    examples: ['Betelgeuse', 'Aldebaran', 'Arcturus'],
+    color: '#ff6347',
+  },
+  {
+    id: 'white-dwarf',
+    name: 'White Dwarf',
+    description: 'Small, dense remnants of dead stars. They\'re about the size of Earth but incredibly hot and heavy.',
+    temperature: '8,000-40,000K',
+    size: 'About Earth-sized',
+    examples: ['Sirius B', 'Procyon B', '40 Eridani B'],
+    color: '#f0f8ff',
+  },
+  {
+    id: 'neutron-star',
+    name: 'Neutron Star',
+    description: 'Incredibly dense collapsed cores of massive stars. A sugar-cube sized piece would weigh billions of tons!',
+    temperature: '600,000K',
+    size: '20 km diameter',
+    examples: ['Pulsar PSR B1919+21', 'Crab Pulsar'],
+    color: '#9370db',
+  },
+  {
+    id: 'black-hole',
+    name: 'Black Hole',
+    description: 'Regions of spacetime where gravity is so strong that nothing, not even light, can escape from it.',
+    temperature: 'Near absolute zero',
+    size: 'Varies (event horizon)',
+    examples: ['Cygnus X-1', 'Sagittarius A*'],
+    color: '#1a1a2e',
+  },
+]
+
+export interface FamousStar {
+  name: string
+  constellation: string
+  description: string
+  distance: string
+  emoji: string
+}
+
+export const famousStars: FamousStar[] = [
+  {
+    name: 'Polaris',
+    constellation: 'Ursa Minor',
+    description: 'The North Star has guided travelers for centuries. It stays fixed in the northern sky.',
+    distance: '433 light-years away',
+    emoji: '🧭',
+  },
+  {
+    name: 'Sirius',
+    constellation: 'Canis Major',
+    description: 'The brightest star in our night sky. Ancient Egyptians based their calendar on it!',
+    distance: '8.6 light-years away',
+    emoji: '🔆',
+  },
+  {
+    name: 'Betelgeuse',
+    constellation: 'Orion',
+    description: 'A red supergiant that could explode as a supernova any day now (in cosmic terms)!',
+    distance: '640 light-years away',
+    emoji: '🔴',
+  },
+]
