@@ -192,6 +192,24 @@ export const starTypes: StarType[] = [
     examples: ['Cygnus X-1', 'Sagittarius A*'],
     color: '#1a1a2e',
   },
+  {
+    id: 'blue-giant',
+    name: 'Blue Giant',
+    description: 'Extremely hot and massive stars that burn bright and fast. They live fast and die young!',
+    temperature: '10,000-50,000K',
+    size: '10-100x Sun\'s radius',
+    examples: ['Rigel', 'Spica', 'Bellatrix'],
+    color: '#4169e1',
+  },
+  {
+    id: 'yellow-dwarf',
+    name: 'Yellow Dwarf',
+    description: 'Medium-sized stars like our Sun. They\'re the perfect temperature for life-supporting planets!',
+    temperature: '5,000-6,000K',
+    size: 'About 1x Sun\'s radius',
+    examples: ['The Sun', 'Alpha Centauri A'],
+    color: '#ffd700',
+  },
 ]
 
 export interface FamousStar {
@@ -199,7 +217,8 @@ export interface FamousStar {
   constellation: string
   description: string
   distance: string
-  emoji: string
+  type: string
+  icon: string
 }
 
 export const famousStars: FamousStar[] = [
@@ -207,21 +226,77 @@ export const famousStars: FamousStar[] = [
     name: 'Polaris',
     constellation: 'Ursa Minor',
     description: 'The North Star has guided travelers for centuries. It stays fixed in the northern sky.',
-    distance: '433 light-years away',
-    emoji: '🧭',
+    distance: '433 light-years',
+    type: 'Yellow Supergiant',
+    icon: '🧭',
   },
   {
     name: 'Sirius',
     constellation: 'Canis Major',
     description: 'The brightest star in our night sky. Ancient Egyptians based their calendar on it!',
-    distance: '8.6 light-years away',
-    emoji: '🔆',
+    distance: '8.6 light-years',
+    type: 'Blue-white Main Sequence',
+    icon: '🔆',
   },
   {
     name: 'Betelgeuse',
     constellation: 'Orion',
     description: 'A red supergiant that could explode as a supernova any day now (in cosmic terms)!',
-    distance: '640 light-years away',
-    emoji: '🔴',
+    distance: '640 light-years',
+    type: 'Red Supergiant',
+    icon: '🔴',
+  },
+  {
+    name: 'Rigel',
+    constellation: 'Orion',
+    description: 'A brilliant blue supergiant and one of the brightest stars visible from Earth.',
+    distance: '860 light-years',
+    type: 'Blue Supergiant',
+    icon: '🔵',
+  },
+]
+
+// Galaxy data
+export interface Galaxy {
+  id: string
+  name: string
+  type: string
+  description: string
+  distance: string
+  funFact: string
+  icon: string
+  color: string
+}
+
+export const galaxies: Galaxy[] = [
+  {
+    id: 'milky-way',
+    name: 'Milky Way',
+    type: 'Barred Spiral',
+    description: 'Our home galaxy! It contains our solar system and billions of other stars.',
+    distance: 'We\'re inside it!',
+    funFact: 'It takes 225-250 million years for our Sun to orbit the center of the Milky Way once!',
+    icon: '🌌',
+    color: '#8b5cf6',
+  },
+  {
+    id: 'andromeda',
+    name: 'Andromeda',
+    type: 'Spiral',
+    description: 'The nearest major galaxy to the Milky Way. It\'s on a collision course with us!',
+    distance: '2.5 million light-years',
+    funFact: 'In about 4.5 billion years, Andromeda and the Milky Way will merge into one giant galaxy!',
+    icon: '🌀',
+    color: '#3b82f6',
+  },
+  {
+    id: 'triangulum',
+    name: 'Triangulum',
+    type: 'Spiral',
+    description: 'The third-largest galaxy in our Local Group, after Andromeda and the Milky Way.',
+    distance: '3 million light-years',
+    funFact: 'It\'s one of the most distant objects visible to the naked eye under perfect conditions!',
+    icon: '△️',
+    color: '#ec4899',
   },
 ]
