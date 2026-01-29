@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-space-black text-text-primary;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Focus indicators for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-star-blue;
+  }
+}
+
+@layer components {
+  /* Skip to content link for accessibility */
+  .skip-to-content {
+    @apply absolute left-0 top-0 bg-star-blue text-white px-4 py-2 transform -translate-y-full focus:translate-y-0 transition-transform z-50;
+  }
+}
+
+@layer utilities {
+  /* Respect motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Text gradient utility */
+  .text-gradient {
+    @apply bg-gradient-to-r from-nebula-purple via-star-blue to-cosmic-pink bg-clip-text text-transparent;
+  }
+}
