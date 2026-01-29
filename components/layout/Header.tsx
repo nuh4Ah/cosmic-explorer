@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import SearchBar from '@/components/ui/SearchBar'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -25,22 +26,30 @@ export default function Header() {
       </a>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
+          <Link href="/" className="flex items-center space-x-2 group flex-shrink-0">
             <span className="text-2xl">🌌</span>
-            <span className="text-xl font-bold text-gradient">
+            <span className="text-xl font-bold text-gradient hidden sm:inline">
               Cosmic Explorer
+            </span>
+            <span className="text-xl font-bold text-gradient sm:hidden">
+              Cosmic
             </span>
           </Link>
 
+          {/* Search Bar - Desktop */}
+          <div className="hidden lg:flex flex-1 max-w-md mx-4">
+            <SearchBar />
+          </div>
+
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center space-x-6 xl:space-x-8" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-nebula-purple ${
+                className={`text-sm font-medium transition-colors hover:text-nebula-purple whitespace-nowrap ${
                   pathname === link.href
                     ? 'text-nebula-purple'
                     : 'text-text-secondary'
@@ -83,6 +92,13 @@ export default function Header() {
             </svg>
           </button>
         </div>
+
+        {/* Search Bar - Mobile (below header when menu open) */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden py-3 border-t border-space-hover">
+            <SearchBar />
+          </div>
+        )}
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
