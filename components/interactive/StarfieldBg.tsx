@@ -12,6 +12,8 @@ interface Star {
 
 export default function StarfieldBg() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const starsRef = useRef<Star[]>([])
+  const animationRef = useRef<number>()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -21,59 +23,73 @@ export default function StarfieldBg() {
     if (!ctx) return
 
     // Set canvas size
-    const setCanvasSize = () => {
+    const resizeCanvas = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
-    setCanvasSize()
-    window.addEventListener('resize', setCanvasSize)
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
 
     // Create stars
-    const starCount = 150
-    const stars: Star[] = []
-
-    for (let i = 0; i < starCount; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2,
-        opacity: Math.random() * 0.5 + 0.3,
-        speed: Math.random() * 0.2 + 0.1,
-      })
+    const createStars = () => {
+      const stars: Star[] = []
+      const starCount = Math.floor((canvas.width * canvas.height) / 8000)
+      
+      for (let i = 0; i < starCount; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 2,
+          opacity: Math.random() * 0.5 + 0.3,
+          speed: Math.random() * 0.05 + 0.01,
+        })
+      }
+      return stars
     }
 
+    starsRef.current = createStars()
+
     // Animation loop
-    let animationId: number
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      stars.forEach((star) => {
+      starsRef.current.forEach((star) => {
         // Draw star
         ctx.beginPath()
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(248, 250, 252, ${star.opacity})`
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`
         ctx.fill()
 
         // Twinkle effect
-        star.opacity += (Math.random() - 0.5) * 0.02
-        star.opacity = Math.max(0.2, Math.min(0.8, star.opacity))
-
-        // Slow drift
-        star.y += star.speed
-        if (star.y > canvas.height) {
-          star.y = 0
-          star.x = Math.random() * canvas.width
+        star.opacity += star.speed
+        if (star.opacity > 0.8 || star.opacity < 0.2) {
+          star.speed *= -1
         }
       })
 
-      animationId = requestAnimationFrame(animate)
+      animationRef.current = requestAnimationFrame(animate)
     }
 
-    animate()
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    if (!prefersReducedMotion) {
+      animate()
+    } else {
+      // Static stars for reduced motion
+      starsRef.current.forEach((star) => {
+        ctx.beginPath()
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`
+        ctx.fill()
+      })
+    }
 
     return () => {
-      window.removeEventListener('resize', setCanvasSize)
-      cancelAnimationFrame(animationId)
+      window.removeEventListener('resize', resizeCanvas)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
     }
   }, [])
 
