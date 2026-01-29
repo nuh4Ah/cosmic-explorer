@@ -217,8 +217,9 @@ export interface FamousStar {
   constellation: string
   description: string
   distance: string
+  brightness: string
   type: string
-  icon: string
+  color: string
 }
 
 export const famousStars: FamousStar[] = [
@@ -227,32 +228,36 @@ export const famousStars: FamousStar[] = [
     constellation: 'Ursa Minor',
     description: 'The North Star has guided travelers for centuries. It stays fixed in the northern sky.',
     distance: '433 light-years',
+    brightness: 'Magnitude 2.0',
     type: 'Yellow Supergiant',
-    icon: '🧭',
+    color: '#ffd700',
   },
   {
     name: 'Sirius',
     constellation: 'Canis Major',
     description: 'The brightest star in our night sky. Ancient Egyptians based their calendar on it!',
     distance: '8.6 light-years',
+    brightness: 'Magnitude -1.46',
     type: 'Blue-white Main Sequence',
-    icon: '🔆',
+    color: '#87ceeb',
   },
   {
     name: 'Betelgeuse',
     constellation: 'Orion',
     description: 'A red supergiant that could explode as a supernova any day now (in cosmic terms)!',
     distance: '640 light-years',
+    brightness: 'Magnitude 0.5',
     type: 'Red Supergiant',
-    icon: '🔴',
+    color: '#ff6347',
   },
   {
     name: 'Rigel',
     constellation: 'Orion',
     description: 'A brilliant blue supergiant and one of the brightest stars visible from Earth.',
     distance: '860 light-years',
+    brightness: 'Magnitude 0.13',
     type: 'Blue Supergiant',
-    icon: '🔵',
+    color: '#4169e1',
   },
 ]
 
@@ -264,7 +269,6 @@ export interface Galaxy {
   description: string
   distance: string
   funFact: string
-  icon: string
   color: string
 }
 
@@ -276,7 +280,6 @@ export const galaxies: Galaxy[] = [
     description: 'Our home galaxy! It contains our solar system and billions of other stars.',
     distance: 'We\'re inside it!',
     funFact: 'It takes 225-250 million years for our Sun to orbit the center of the Milky Way once!',
-    icon: '🌌',
     color: '#8b5cf6',
   },
   {
@@ -286,7 +289,6 @@ export const galaxies: Galaxy[] = [
     description: 'The nearest major galaxy to the Milky Way. It\'s on a collision course with us!',
     distance: '2.5 million light-years',
     funFact: 'In about 4.5 billion years, Andromeda and the Milky Way will merge into one giant galaxy!',
-    icon: '🌀',
     color: '#3b82f6',
   },
   {
@@ -296,7 +298,102 @@ export const galaxies: Galaxy[] = [
     description: 'The third-largest galaxy in our Local Group, after Andromeda and the Milky Way.',
     distance: '3 million light-years',
     funFact: 'It\'s one of the most distant objects visible to the naked eye under perfect conditions!',
-    icon: '△️',
     color: '#ec4899',
+  },
+  {
+    id: 'whirlpool',
+    name: 'Whirlpool Galaxy',
+    type: 'Spiral',
+    description: 'A beautiful face-on spiral galaxy with dramatic spiral arms.',
+    distance: '23 million light-years',
+    funFact: 'It was the first galaxy where spiral structure was observed!',
+    color: '#06b6d4',
+  },
+  {
+    id: 'sombrero',
+    name: 'Sombrero Galaxy',
+    type: 'Spiral/Elliptical Hybrid',
+    description: 'Named for its appearance which resembles a Mexican hat.',
+    distance: '29 million light-years',
+    funFact: 'It has a supermassive black hole at its center that\'s 1 billion times the mass of our Sun!',
+    color: '#f59e0b',
+  },
+]
+
+// Phenomena data
+export interface Phenomenon {
+  id: string
+  name: string
+  description: string
+  analogy: string
+  facts: string[]
+  color: string
+}
+
+export const phenomena: Phenomenon[] = [
+  {
+    id: 'black-hole',
+    name: 'Black Holes',
+    description: 'Regions of spacetime with gravity so strong that nothing can escape, not even light.',
+    analogy: 'Imagine a cosmic drain where everything gets sucked in, never to return. Even light can\'t climb out!',
+    facts: [
+      'Time slows down near a black hole due to extreme gravity',
+      'The nearest known black hole is about 1,000 light-years away',
+      'Supermassive black holes exist at the center of most galaxies',
+      'Nothing that crosses the event horizon can ever escape'
+    ],
+    color: '#1a1a2e',
+  },
+  {
+    id: 'supernova',
+    name: 'Supernovas',
+    description: 'Massive stellar explosions that briefly outshine entire galaxies.',
+    analogy: 'Like a star\'s final fireworks show! When massive stars die, they go out with a bang that can be seen across the universe.',
+    facts: [
+      'A supernova can briefly outshine an entire galaxy of 100 billion stars',
+      'They create and distribute heavy elements like gold and uranium',
+      'The explosion can last for weeks or months',
+      'Supernova remnants can form neutron stars or black holes'
+    ],
+    color: '#f59e0b',
+  },
+  {
+    id: 'nebula',
+    name: 'Nebulas',
+    description: 'Giant clouds of dust and gas in space, often serving as stellar nurseries.',
+    analogy: 'Think of them as cosmic clouds where baby stars are born. They\'re the maternity wards of the universe!',
+    facts: [
+      'Some nebulas are hundreds of light-years across',
+      'The word "nebula" means "cloud" in Latin',
+      'They come in many colors depending on their composition',
+      'Our solar system likely formed from a nebula 4.6 billion years ago'
+    ],
+    color: '#8b5cf6',
+  },
+  {
+    id: 'dark-matter',
+    name: 'Dark Matter',
+    description: 'Mysterious invisible matter that makes up about 85% of the universe\'s mass.',
+    analogy: 'Like invisible glue holding galaxies together. We can\'t see it, but we know it\'s there because of how it affects visible matter.',
+    facts: [
+      'Dark matter doesn\'t emit, absorb, or reflect light',
+      'We detect it only through its gravitational effects',
+      'It\'s called "dark" because we can\'t see it directly',
+      'Scientists are still trying to figure out what it\'s made of'
+    ],
+    color: '#4b5563',
+  },
+  {
+    id: 'dark-energy',
+    name: 'Dark Energy',
+    description: 'A mysterious force causing the universe to expand faster and faster.',
+    analogy: 'Imagine the universe is a balloon being blown up, and dark energy is what\'s making it inflate faster over time.',
+    facts: [
+      'Makes up about 68% of the universe',
+      'Discovered in 1998 by studying distant supernovas',
+      'Its nature is one of the biggest mysteries in physics',
+      'It\'s causing galaxies to move away from each other faster'
+    ],
+    color: '#6366f1',
   },
 ]
